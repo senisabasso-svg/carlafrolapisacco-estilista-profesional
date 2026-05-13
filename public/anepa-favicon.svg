@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ANEPA">
+  <rect width="64" height="64" rx="12" fill="#0f172a"/>
+  <path fill="none" stroke="#c9a227" stroke-width="2.5" d="M18 44V20l14 18 14-18v24"/>
+  <circle cx="32" cy="16" r="3" fill="#c9a227"/>
+</svg>

@@ -7,19 +7,18 @@ import {
 } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
-const INSTAGRAM = "https://www.instagram.com/carlafrolapisacco/";
-const WHATSAPP = "https://wa.me/59897385931";
-const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Albisu+44%2C+Salto%2C+Uruguay";
-const MAPS_EMBED =
-  "https://maps.google.com/maps?q=Albisu+44,+Salto,+Uruguay&hl=es&z=16&output=embed";
+/** Redes y material de difusión */
+const INSTAGRAM = "https://www.instagram.com/anep_uruguay/";
+const REEL_PRESENTACION = "https://www.instagram.com/reels/DAB0FZYPVdn/";
+const WHATSAPP_CONSULTAS = "https://wa.me/59897385931";
+const BLOG_HISTORICO = "https://asociacionanepa.blogspot.com/";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 36 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -43,18 +42,33 @@ function Nav() {
   return (
     <motion.header
       className="site-nav"
-      initial={{ y: -20, opacity: 0 }}
+      initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, delay: 0.15 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
     >
       <a href="#inicio" className="nav-brand">
-        <span className="nav-brand-script font-script">Carla Frola</span>
-        <span className="nav-brand-sub tracking-wide">Beauty Concept</span>
+        <span className="nav-mark" aria-hidden>
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+            <rect width="64" height="64" rx="14" fill="#0f172a" />
+            <path
+              d="M18 44V20l14 18 14-18v24"
+              stroke="#c9a227"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle cx="32" cy="16" r="3.5" fill="#c9a227" />
+          </svg>
+        </span>
+        <span className="nav-titles">
+          <span className="nav-name">ANEPA</span>
+          <span className="nav-sub tracking-wide">Uruguay</span>
+        </span>
       </a>
       <nav className="nav-links" aria-label="Principal">
-        <a href="#sobre">Sobre</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#ubicacion">Salón</a>
+        <a href="#mision">Misión</a>
+        <a href="#actividades">Actividades</a>
+        <a href="#socios">Socios</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </motion.header>
@@ -85,14 +99,14 @@ function SectionShell({
 function WhatsAppFab() {
   return (
     <a
-      href={WHATSAPP}
+      href={WHATSAPP_CONSULTAS}
       className="wa-fab"
       target="_blank"
       rel="noreferrer"
-      aria-label="Escribir por WhatsApp"
+      aria-label="Consultas por WhatsApp"
       title="WhatsApp"
     >
-      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden>
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden>
         <path
           fill="currentColor"
           d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
@@ -109,20 +123,15 @@ export default function App() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const logoY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 100]);
-  const logoScale = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [1, reduceMotion ? 1 : 0.9]
-  );
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0.4]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 56]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, reduceMotion ? 1 : 0.96]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.45]);
 
   return (
     <>
       <div className="ambient" aria-hidden>
         <span className="orb orb-a" />
         <span className="orb orb-b" />
-        <span className="orb orb-c" />
       </div>
       <ScrollProgress />
       <Nav />
@@ -134,228 +143,205 @@ export default function App() {
         className="panel hero-wrap"
         style={reduceMotion ? { scrollSnapAlign: "none" as const } : undefined}
       >
-        <div className="hero-frame" aria-hidden />
-        <motion.div className="hero-inner" style={{ opacity: heroOpacity }}>
-          <motion.div
-            className="hero-badges"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            <span className="pill tracking-wide">Peluquería</span>
-            <span className="pill pill-rose tracking-wide">Salto, UY</span>
-          </motion.div>
-          <motion.div
-            className="hero-logo-wrap"
-            style={{ y: logoY, scale: logoScale }}
-          >
-            <div className="hero-logo-ring">
-              <img
-                src="/logo.png"
-                alt="Carla Frola Beauty Concept — peluquería"
-                className="hero-logo"
-                width={420}
-                height={280}
-              />
-            </div>
-          </motion.div>
-          <motion.p
-            className="hero-kicker tracking-wide"
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            transition={{ delay: 0.3 }}
-          >
-            Estilista &amp; colorista profesional
-          </motion.p>
-          <motion.p
-            className="hero-tagline"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.45, duration: 0.6 }}
-          >
-            Más de <strong>30 años</strong> creando color y formas que te hacen brillar.
-          </motion.p>
-          <motion.div
-            className="hero-cta-row"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.55 }}
-          >
-            <a className="btn btn-primary" href={WHATSAPP} target="_blank" rel="noreferrer">
-              Pedir turno
+        <div className="hero-grid-bg" aria-hidden />
+        <motion.div
+          className="hero-inner"
+          style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
+        >
+          <p className="hero-eyebrow tracking-wide">Asociación civil · Uruguay</p>
+          <h1 className="hero-title font-display">
+            Asociación Nacional de{" "}
+            <span className="hero-title-gold">Peluqueros, Estilistas y Afines</span>
+          </h1>
+          <p className="hero-lead">
+            Unimos a peluqueros, barberos, maquilladores, especialistas en uñas y demás
+            profesionales de la estética para capacitarnos, crecer y representar al sector.
+          </p>
+          <div className="hero-cta-row">
+            <a className="btn btn-gold" href={REEL_PRESENTACION} target="_blank" rel="noreferrer">
+              Ver presentación
             </a>
-            <a className="btn btn-ghost" href={INSTAGRAM} target="_blank" rel="noreferrer">
-              Ver Instagram
+            <a className="btn btn-outline" href={INSTAGRAM} target="_blank" rel="noreferrer">
+              Instagram
             </a>
-          </motion.div>
+            <a className="btn btn-ghost" href={WHATSAPP_CONSULTAS} target="_blank" rel="noreferrer">
+              Ser socio · Consultas
+            </a>
+          </div>
+          <p className="hero-note">
+            Contenido alineado a la misión pública de ANEPA. Seguinos en{" "}
+            <a href={INSTAGRAM} className="link-inline" target="_blank" rel="noreferrer">
+              @anep_uruguay
+            </a>
+            .
+          </p>
         </motion.div>
         <div className="scroll-hint" aria-hidden>
           <span className="scroll-hint-line" />
-          <span className="scroll-hint-text tracking-wide">Descubrí más</span>
+          <span className="scroll-hint-text tracking-wide">Conocé más</span>
         </div>
       </section>
 
-      <SectionShell id="sobre" className="section-dark">
+      <SectionShell id="mision" className="section-muted">
         <motion.div
-          className="section-inner about-grid"
+          className="section-inner split"
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-70px" }}
         >
-          <div className="about-copy">
-            <p className="eyebrow eyebrow-rose tracking-wide">La peluquería</p>
-            <h2 className="section-title font-script">Tu pelo, en buenas manos</h2>
+          <div>
+            <p className="eyebrow tracking-wide">Por qué existimos</p>
+            <h2 className="section-title font-display">Misión</h2>
             <p className="section-body">
-              En <strong>Beauty Concept</strong> combinamos experiencia y tendencias: color
-              con criterio, cortes que favorecen y un trato cercano. Cada visita es para
-              que te vayas con el pelo —y la energía— que querés.
+              ANEPA agrupa oficios de la belleza —no solo el cabello— para fortalecer la
+              comunidad profesional: aprender en conjunto, abrir puertas a la competencia
+              sana y dar visibilidad al trabajo técnico y artístico del sector en Uruguay.
             </p>
           </div>
-          <ul className="about-stats">
-            <li>
-              <span className="stat-num font-script">30+</span>
-              <span className="stat-label tracking-wide">Años de oficio</span>
-            </li>
-            <li>
-              <span className="stat-num" aria-hidden>
-                💇‍♀️
-              </span>
-              <span className="stat-label tracking-wide">Corte &amp; estilo</span>
-            </li>
-            <li>
-              <span className="stat-num" aria-hidden>
-                🎨
-              </span>
-              <span className="stat-label tracking-wide">Colorista</span>
-            </li>
-          </ul>
+          <blockquote className="pullquote font-display">
+            «La competencia no es con el otro, es con uno mismo. Perdamos el miedo,
+            cambiemos el chip y ayudémonos mutuamente.»
+            <footer className="pullquote-footer tracking-wide">
+              — Carla Frola, entrevista ANEPA · 2025
+            </footer>
+          </blockquote>
         </motion.div>
       </SectionShell>
 
-      <SectionShell id="servicios" className="section-services">
+      <SectionShell id="actividades" className="section-activities">
         <div className="section-inner">
           <motion.div
-            className="services-header"
+            className="block-header"
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-60px" }}
           >
-            <p className="eyebrow eyebrow-rose tracking-wide">En el salón</p>
-            <h2 className="section-title font-script">Servicios</h2>
-            <p className="services-lead">
-              Trabajamos con productos de calidad y técnicas pensadas para el cabello
-              uruguayo.
+            <p className="eyebrow tracking-wide">Qué hacemos</p>
+            <h2 className="section-title font-display">Actividades y proyectos</h2>
+            <p className="section-sub">
+              Talleres, encuentros en el interior, ferias y participación en eventos
+              internacionales: la asociación impulsa formación continua y redes entre
+              colegas.
             </p>
           </motion.div>
-          <ul className="service-grid">
+          <ul className="card-grid">
             {[
               {
-                title: "Color",
-                text: "Mechas, balayage, tintes y correcciones con acabado luminoso y natural.",
+                t: "Capacitación",
+                d: "Talleres de técnica y tendencias con educadores invitados, en salón o en gira por el país.",
               },
               {
-                title: "Corte",
-                text: "Formas limpias o con movimiento, según tu rostro y tu estilo de vida.",
+                t: "ANEPA Tour",
+                d: "Jornadas en distintas ciudades: corte, permanente, brushing y más, acercando la formación a cada región.",
               },
               {
-                title: "Peinado",
-                text: "Brushing, ondas y recogidos para el día a día o tu evento especial.",
+                t: "Ferias y congresos",
+                d: "Presencia en exposiciones de belleza y espacios de networking con marcas y profesionales.",
               },
               {
-                title: "Tratamientos",
-                text: "Nutrición, brillo y alivio para cabellos castigados o con frizz.",
+                t: "Vínculos internacionales",
+                d: "Intercambios y participación en competencias y congresos del mundo de la peluquería.",
               },
             ].map((item, i) => (
               <motion.li
-                key={item.title}
-                className="service-card"
-                initial={{ opacity: 0, y: 32 }}
+                key={item.t}
+                className="info-card"
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-36px" }}
-                transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-32px" }}
+                transition={{ delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
-                <span className="service-accent" aria-hidden />
-                <span className="service-num tracking-wide">0{i + 1}</span>
-                <h3 className="service-title tracking-wide">{item.title}</h3>
-                <p className="service-text">{item.text}</p>
+                <span className="card-bar" aria-hidden />
+                <h3 className="card-title tracking-wide">{item.t}</h3>
+                <p className="card-text">{item.d}</p>
               </motion.li>
             ))}
           </ul>
         </div>
       </SectionShell>
 
-      <SectionShell id="ubicacion" className="section-map">
+      <SectionShell id="socios" className="section-socios">
         <motion.div
-          className="section-inner map-layout"
+          className="section-inner socios-layout"
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-70px" }}
         >
-          <div className="map-copy">
-            <p className="eyebrow eyebrow-rose tracking-wide">Salón</p>
-            <h2 className="section-title font-script">Visitános</h2>
-            <p className="section-body map-address">
-              <span className="map-pin" aria-hidden>
-                📍
-              </span>
-              <strong>Albisu 44</strong>
-              <br />
-              Salto, Uruguay
+          <div>
+            <p className="eyebrow tracking-wide">Sumate</p>
+            <h2 className="section-title font-display">Ser socio</h2>
+            <p className="section-body">
+              La membresía es una forma concreta de sostener encuentros, traer referentes y
+              mantener canales de consulta para el gremio. Si tenés salón o trabajás por
+              cuenta propia en belleza y estética, podés pedir información de requisitos y
+              cuota vigente por WhatsApp o Instagram.
             </p>
-            <a className="btn btn-outline" href={MAPS_URL} target="_blank" rel="noreferrer">
-              Abrir en Google Maps
+            <ul className="checklist">
+              <li>Red de colegas a nivel país</li>
+              <li>Prioridad en talleres y eventos</li>
+              <li>Apoyo institucional y difusión</li>
+            </ul>
+          </div>
+          <aside className="socios-aside">
+            <p className="aside-kicker tracking-wide">Material extra</p>
+            <p className="aside-text">
+              Notas y contexto sobre la asociación en medios locales ayudan a entender el
+              momento del sector.
+            </p>
+            <a
+              className="btn btn-outline btn-block"
+              href="https://elpueblodigital.uy/anepa-impulsa-la-unidad-y-el-crecimiento-en-la-industria-de-la-belleza-en-uruguay/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Nota en El Pueblo Digital
             </a>
-          </div>
-          <div className="map-embed-wrap">
-            <iframe
-              title="Ubicación — Albisu 44, Salto"
-              className="map-embed"
-              src={MAPS_EMBED}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+            <a className="btn btn-ghost btn-block" href={BLOG_HISTORICO} target="_blank" rel="noreferrer">
+              Blog histórico ANEPA
+            </a>
+          </aside>
         </motion.div>
       </SectionShell>
 
-      <SectionShell id="contacto" className="section-cta">
-        <div className="cta-glow" aria-hidden />
+      <SectionShell id="contacto" className="section-contact">
+        <div className="contact-glow" aria-hidden />
         <motion.div
-          className="section-inner cta-block"
+          className="section-inner contact-block"
           variants={fadeUp}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <p className="eyebrow eyebrow-rose tracking-wide">Reservá</p>
-          <h2 className="section-title font-script">Hablemos por WhatsApp</h2>
-          <p className="section-body cta-lead">
-            Como en nuestro{" "}
-            <a href={INSTAGRAM} className="inline-link" target="_blank" rel="noreferrer">
-              Instagram
-            </a>
-            : escribinos y coordinamos tu próxima visita al salón.
+          <p className="eyebrow tracking-wide">Contacto</p>
+          <h2 className="section-title font-display">Escribinos</h2>
+          <p className="section-body contact-lead">
+            Para sumarte como socio, prensa o alianzas: WhatsApp, Instagram o el video de
+            presentación que compartimos en redes.
           </p>
-          <div className="cta-buttons">
-            <a className="btn btn-primary btn-lg" href={WHATSAPP} target="_blank" rel="noreferrer">
+          <div className="contact-actions">
+            <a className="btn btn-gold btn-lg" href={WHATSAPP_CONSULTAS} target="_blank" rel="noreferrer">
               WhatsApp +598 97 385 931
             </a>
-            <a className="btn btn-ghost btn-lg" href={INSTAGRAM} target="_blank" rel="noreferrer">
-              @carlafrolapisacco
+            <a className="btn btn-outline btn-lg" href={INSTAGRAM} target="_blank" rel="noreferrer">
+              @anep_uruguay
+            </a>
+            <a className="btn btn-ghost btn-lg" href={REEL_PRESENTACION} target="_blank" rel="noreferrer">
+              Ver reel de presentación
             </a>
           </div>
         </motion.div>
       </SectionShell>
 
       <footer className="site-footer">
-        <p className="footer-brand font-script">Carla Frola Pisacco</p>
-        <p className="footer-tag tracking-wide">Beauty Concept · Peluquería</p>
-        <p className="footer-address">Albisu 44 · Salto, UY</p>
-        <p className="footer-copy">© {new Date().getFullYear()}</p>
+        <p className="footer-acronym font-display">ANEPA</p>
+        <p className="footer-full tracking-wide">
+          Asociación Nacional de Peluqueros, Estilistas y Afines
+        </p>
+        <p className="footer-meta">Uruguay · Comunidad profesional de la belleza</p>
+        <p className="footer-copy">© {new Date().getFullYear()} ANEPA</p>
       </footer>
 
       <style>{`
@@ -369,29 +355,22 @@ export default function App() {
         .orb {
           position: absolute;
           border-radius: 50%;
-          filter: blur(80px);
-          opacity: 0.5;
+          filter: blur(90px);
+          opacity: 0.45;
         }
         .orb-a {
-          width: min(55vw, 420px);
-          height: min(55vw, 420px);
-          background: radial-gradient(circle, var(--rose-muted) 0%, transparent 70%);
-          top: -8%;
-          right: -10%;
+          width: min(50vw, 380px);
+          height: min(50vw, 380px);
+          background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+          top: -5%;
+          right: -8%;
         }
         .orb-b {
-          width: min(45vw, 360px);
-          height: min(45vw, 360px);
-          background: radial-gradient(circle, rgba(190, 24, 93, 0.2) 0%, transparent 70%);
-          bottom: 20%;
-          left: -15%;
-        }
-        .orb-c {
-          width: 280px;
-          height: 280px;
-          background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-          top: 45%;
-          right: 5%;
+          width: min(42vw, 320px);
+          height: min(42vw, 320px);
+          background: radial-gradient(circle, var(--gold-dim) 0%, transparent 70%);
+          bottom: 15%;
+          left: -12%;
         }
         .scroll-progress {
           position: fixed;
@@ -399,7 +378,7 @@ export default function App() {
           left: 0;
           right: 0;
           height: 3px;
-          background: linear-gradient(90deg, var(--rose-deep), var(--rose-soft), #fff);
+          background: linear-gradient(90deg, var(--gold), var(--gold-soft), var(--accent));
           z-index: 100;
           pointer-events: none;
         }
@@ -413,68 +392,76 @@ export default function App() {
           align-items: center;
           justify-content: space-between;
           gap: 1rem;
-          padding: 1rem clamp(1rem, 4vw, 2.5rem);
-          background: linear-gradient(to bottom, rgba(7,7,8,0.94) 0%, rgba(7,7,8,0.75) 55%, transparent 100%);
-          backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(255,255,255,0.04);
+          padding: 0.85rem clamp(0.9rem, 3.5vw, 2.25rem);
+          background: linear-gradient(
+            to bottom,
+            rgba(11, 18, 32, 0.96) 0%,
+            rgba(11, 18, 32, 0.78) 60%,
+            transparent
+          );
+          backdrop-filter: blur(14px);
+          border-bottom: 1px solid var(--line);
         }
         .nav-brand {
           display: flex;
+          align-items: center;
+          gap: 0.65rem;
+        }
+        .nav-mark svg {
+          display: block;
+          border-radius: 10px;
+        }
+        .nav-titles {
+          display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          gap: 0.15rem;
+          line-height: 1.1;
         }
-        .nav-brand-script {
-          font-size: 1.35rem;
-          line-height: 1;
-          background: linear-gradient(135deg, #fff 0%, var(--rose-soft) 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+        .nav-name {
+          font-weight: 700;
+          font-size: 1.15rem;
+          letter-spacing: 0.06em;
         }
-        .nav-brand-sub {
+        .nav-sub {
           font-size: 0.55rem;
           font-weight: 600;
           color: var(--muted);
-          letter-spacing: 0.28em;
+          margin-top: 0.15rem;
         }
         .nav-links {
           display: flex;
           flex-wrap: wrap;
           justify-content: flex-end;
-          gap: clamp(0.65rem, 2vw, 1.35rem);
+          gap: clamp(0.5rem, 2vw, 1.1rem);
           font-size: 0.58rem;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
           font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
         }
         .nav-links a {
           color: var(--muted);
-          transition: color 0.2s, text-shadow 0.2s;
+          transition: color 0.2s;
         }
         .nav-links a:hover {
-          color: var(--fg);
-          text-shadow: 0 0 20px var(--rose-glow);
+          color: var(--gold-soft);
         }
         .wa-fab {
           position: fixed;
-          bottom: 1.35rem;
-          right: 1.35rem;
+          bottom: 1.25rem;
+          right: 1.25rem;
           z-index: 60;
-          width: 3.35rem;
-          height: 3.35rem;
+          width: 3.25rem;
+          height: 3.25rem;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(145deg, var(--rose-soft), var(--rose-deep));
+          background: linear-gradient(145deg, #0f766e, #0d9488);
           color: #fff;
-          box-shadow: 0 12px 32px rgba(190, 24, 93, 0.45), 0 0 0 1px rgba(255,255,255,0.12);
-          transition: transform 0.2s, box-shadow 0.2s;
+          box-shadow: 0 12px 32px rgba(13, 148, 136, 0.4);
+          transition: transform 0.2s;
         }
         .wa-fab:hover {
-          transform: scale(1.06);
-          box-shadow: 0 16px 40px rgba(190, 24, 93, 0.55);
+          transform: scale(1.05);
         }
         .panel {
           position: relative;
@@ -486,405 +473,336 @@ export default function App() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding: clamp(4.5rem, 11vh, 6.5rem) clamp(1.15rem, 4.5vw, 2.75rem);
+          padding: clamp(4.25rem, 10vh, 6rem) clamp(1rem, 4vw, 2.5rem);
         }
         .hero-wrap {
-          padding-top: 5.5rem;
-          background:
-            radial-gradient(ellipse 100% 80% at 50% 0%, rgba(232, 72, 140, 0.14), transparent 55%),
-            radial-gradient(ellipse 60% 40% at 80% 60%, rgba(255,255,255,0.05), transparent),
+          padding-top: 5rem;
+          background: radial-gradient(ellipse 90% 55% at 50% 0%, rgba(201, 162, 39, 0.08), transparent 50%),
             var(--bg);
         }
-        .hero-frame {
+        .hero-grid-bg {
           position: absolute;
-          inset: clamp(4.5rem, 10vh, 6rem) clamp(1rem, 4vw, 2rem);
-          border: 1px solid rgba(255,255,255,0.06);
-          border-radius: 1.25rem;
+          inset: 0;
+          background-image: linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+          background-size: 48px 48px;
+          mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
           pointer-events: none;
-          mask-image: linear-gradient(to bottom, black 0%, transparent 92%);
         }
         .hero-inner {
-          text-align: center;
-          max-width: 38rem;
           position: relative;
+          max-width: 46rem;
+          text-align: center;
         }
-        .hero-badges {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          justify-content: center;
-          margin-bottom: 1.25rem;
-        }
-        .pill {
-          font-size: 0.55rem;
+        .hero-eyebrow {
+          font-size: 0.62rem;
           font-weight: 600;
-          padding: 0.4rem 0.85rem;
-          border-radius: 999px;
-          border: 1px solid var(--line);
-          color: var(--muted);
-          background: rgba(255,255,255,0.03);
+          color: var(--gold-soft);
+          margin: 0 0 1rem;
         }
-        .pill-rose {
-          border-color: rgba(232, 72, 140, 0.35);
-          color: var(--rose-soft);
-          background: var(--rose-muted);
-        }
-        .hero-logo-wrap {
-          margin: 0 auto 1.25rem;
-          max-width: min(88vw, 400px);
-        }
-        .hero-logo-ring {
-          padding: clamp(0.75rem, 2.5vw, 1.25rem);
-          border-radius: 1.5rem;
-          background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(232, 72, 140, 0.08));
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,0.08),
-            0 24px 64px rgba(0,0,0,0.45),
-            0 0 80px rgba(232, 72, 140, 0.12);
-        }
-        .hero-logo {
-          width: 100%;
-          height: auto;
-          border-radius: 0.75rem;
-        }
-        .hero-kicker {
-          font-size: 0.68rem;
+        .hero-title {
+          font-size: clamp(1.75rem, 5vw, 2.85rem);
           font-weight: 600;
-          color: var(--rose-soft);
-          margin: 0 0 0.65rem;
-          letter-spacing: 0.22em;
+          line-height: 1.15;
+          margin: 0 0 1.25rem;
+          color: var(--fg);
         }
-        .hero-tagline {
-          font-size: 0.95rem;
+        .hero-title-gold {
+          color: var(--gold-soft);
+          display: inline;
+        }
+        .hero-lead {
+          margin: 0 auto 2rem;
+          max-width: 38rem;
+          font-size: 1.02rem;
           font-weight: 300;
           color: var(--muted);
-          margin: 0 0 2rem;
-          line-height: 1.65;
-          max-width: 26rem;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        .hero-tagline strong {
-          color: var(--fg);
-          font-weight: 600;
+          line-height: 1.7;
         }
         .hero-cta-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.85rem;
+          gap: 0.75rem;
           justify-content: center;
+          margin-bottom: 1.5rem;
         }
         .btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 0.9rem 1.6rem;
-          font-size: 0.62rem;
+          padding: 0.85rem 1.35rem;
+          font-size: 0.58rem;
           font-weight: 700;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
+          border-radius: 3px;
           border: 1px solid transparent;
-          border-radius: 2px;
           transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
         }
         .btn:hover {
           transform: translateY(-1px);
         }
-        .btn-primary {
-          background: linear-gradient(135deg, var(--rose-soft), var(--rose-deep));
-          color: #fff;
-          box-shadow: 0 8px 28px rgba(190, 24, 93, 0.35);
+        .btn-gold {
+          background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+          color: #0b1220;
+          box-shadow: 0 8px 28px rgba(201, 162, 39, 0.25);
         }
-        .btn-primary:hover {
-          box-shadow: 0 12px 36px rgba(190, 24, 93, 0.45);
-        }
-        .btn-ghost {
-          border-color: rgba(255,255,255,0.14);
-          color: var(--fg);
-          background: rgba(255,255,255,0.03);
-        }
-        .btn-ghost:hover {
-          border-color: rgba(232, 72, 140, 0.45);
-          background: rgba(232, 72, 140, 0.08);
+        .btn-gold:hover {
+          box-shadow: 0 12px 36px rgba(201, 162, 39, 0.35);
         }
         .btn-outline {
-          border-color: rgba(232, 72, 140, 0.5);
-          color: var(--rose-soft);
-          background: transparent;
+          border-color: rgba(201, 162, 39, 0.45);
+          color: var(--gold-soft);
+          background: rgba(201, 162, 39, 0.06);
         }
         .btn-outline:hover {
-          background: var(--rose-muted);
-          border-color: var(--rose-soft);
+          border-color: var(--gold-soft);
+          background: rgba(201, 162, 39, 0.12);
+        }
+        .btn-ghost {
+          border-color: var(--line);
+          color: var(--fg);
+          background: rgba(255, 255, 255, 0.03);
+        }
+        .btn-ghost:hover {
+          border-color: rgba(148, 163, 184, 0.35);
         }
         .btn-lg {
-          padding: 1.05rem 1.85rem;
-          font-size: 0.64rem;
+          padding: 1rem 1.5rem;
+          font-size: 0.6rem;
+        }
+        .btn-block {
+          width: 100%;
+        }
+        .hero-note {
+          font-size: 0.8rem;
+          color: var(--muted);
+          margin: 0;
+        }
+        .link-inline {
+          color: var(--accent);
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .link-inline:hover {
+          color: var(--gold-soft);
         }
         .scroll-hint {
           position: absolute;
-          bottom: 2rem;
+          bottom: 1.75rem;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0.45rem;
-          opacity: 0.5;
+          gap: 0.4rem;
+          opacity: 0.45;
         }
         .scroll-hint-line {
           width: 1px;
-          height: 2.75rem;
-          background: linear-gradient(to bottom, transparent, var(--rose-soft));
+          height: 2.5rem;
+          background: linear-gradient(to bottom, transparent, var(--gold-soft));
           animation: pulse-line 2.2s ease-in-out infinite;
         }
         .scroll-hint-text {
-          font-size: 0.55rem;
+          font-size: 0.52rem;
           color: var(--muted);
         }
         @keyframes pulse-line {
           0%, 100% { opacity: 0.35; transform: scaleY(0.88); }
           50% { opacity: 1; transform: scaleY(1); }
         }
-        .section-dark {
-          background: linear-gradient(180deg, #060607 0%, var(--bg-elevated) 100%);
-          border-top: 1px solid var(--line);
-        }
         .section-inner {
           width: 100%;
-          max-width: 58rem;
+          max-width: 56rem;
         }
-        .about-grid {
+        .section-muted {
+          background: var(--bg-elevated);
+          border-top: 1px solid var(--line);
+        }
+        .split {
           display: grid;
-          gap: 2.5rem;
-          align-items: center;
+          gap: 2rem;
+          align-items: start;
         }
-        @media (min-width: 768px) {
-          .about-grid {
-            grid-template-columns: 1.1fr 0.9fr;
+        @media (min-width: 840px) {
+          .split {
+            grid-template-columns: 1fr 1fr;
             gap: 3rem;
+            align-items: center;
           }
-          .about-copy { text-align: left; }
-        }
-        .about-copy {
-          text-align: center;
-        }
-        .about-stats {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          display: grid;
-          gap: 1rem;
-        }
-        @media (min-width: 768px) {
-          .about-stats { gap: 1.15rem; }
-        }
-        .about-stats li {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 1.25rem 1rem;
-          border: 1px solid var(--line);
-          border-radius: 0.75rem;
-          background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(232, 72, 140, 0.05));
-        }
-        @media (min-width: 768px) {
-          .about-stats li { align-items: flex-start; }
-        }
-        .stat-num {
-          font-size: 2.25rem;
-          line-height: 1;
-          color: var(--fg);
-        }
-        .stat-num.font-script {
-          font-size: 2.75rem;
-          background: linear-gradient(135deg, #fff, var(--rose-soft));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-        .stat-label {
-          font-size: 0.58rem;
-          color: var(--muted);
-          margin-top: 0.5rem;
-          font-weight: 600;
         }
         .eyebrow {
-          font-size: 0.62rem;
-          font-weight: 600;
-          color: var(--muted);
-          margin: 0 0 0.65rem;
-        }
-        .eyebrow-rose {
-          color: var(--rose-soft);
+          font-size: 0.6rem;
+          font-weight: 700;
+          color: var(--gold-soft);
+          margin: 0 0 0.5rem;
         }
         .section-title {
-          font-size: clamp(2.35rem, 7.5vw, 3.75rem);
+          font-size: clamp(1.85rem, 4.5vw, 2.6rem);
           margin: 0 0 1rem;
-          line-height: 1.08;
+          line-height: 1.15;
         }
         .section-body {
           margin: 0;
           color: var(--muted);
           font-size: 0.95rem;
           font-weight: 300;
-          line-height: 1.78;
+          line-height: 1.75;
         }
-        .section-body strong {
+        .pullquote {
+          margin: 0;
+          padding: 1.5rem 1.35rem;
+          border-left: 3px solid var(--gold);
+          background: rgba(201, 162, 39, 0.06);
+          border-radius: 0 12px 12px 0;
+          font-size: 1.05rem;
+          font-style: italic;
           color: var(--fg);
-          font-weight: 500;
+          line-height: 1.55;
         }
-        .section-services {
+        .pullquote-footer {
+          display: block;
+          margin-top: 1rem;
+          font-size: 0.55rem;
+          font-style: normal;
+          color: var(--muted);
+          letter-spacing: 0.12em;
+        }
+        .section-activities {
           background: var(--bg);
           border-top: 1px solid var(--line);
         }
-        .services-header {
+        .block-header {
           text-align: center;
-          margin-bottom: 2.5rem;
-          max-width: 36rem;
-          margin-left: auto;
-          margin-right: auto;
+          max-width: 40rem;
+          margin: 0 auto 2.5rem;
         }
-        .services-lead {
+        .section-sub {
           margin: 0.75rem 0 0;
           color: var(--muted);
-          font-size: 0.9rem;
+          font-size: 0.92rem;
           font-weight: 300;
           line-height: 1.65;
         }
-        .service-grid {
+        .card-grid {
           list-style: none;
           margin: 0;
           padding: 0;
           display: grid;
-          gap: 1.1rem;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1rem;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         }
-        .service-card {
+        .info-card {
           position: relative;
+          padding: 1.5rem 1.35rem 1.35rem;
           border: 1px solid var(--line);
-          border-radius: 0.85rem;
-          padding: 1.65rem 1.4rem 1.5rem;
-          background: rgba(255,255,255,0.02);
-          overflow: hidden;
-          transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.02);
+          transition: border-color 0.25s, transform 0.25s;
         }
-        .service-card:hover {
-          border-color: rgba(232, 72, 140, 0.35);
-          transform: translateY(-3px);
-          box-shadow: 0 20px 48px rgba(0,0,0,0.35), 0 0 40px rgba(232, 72, 140, 0.08);
+        .info-card:hover {
+          border-color: rgba(201, 162, 39, 0.35);
+          transform: translateY(-2px);
         }
-        .service-accent {
+        .card-bar {
           position: absolute;
           top: 0;
-          left: 0;
-          right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, var(--rose-deep), var(--rose-soft));
-          opacity: 0;
-          transition: opacity 0.3s;
+          left: 1.35rem;
+          right: 1.35rem;
+          height: 2px;
+          background: linear-gradient(90deg, var(--gold), var(--accent));
+          border-radius: 2px;
+          opacity: 0.85;
         }
-        .service-card:hover .service-accent {
-          opacity: 1;
-        }
-        .service-num {
-          font-size: 0.58rem;
-          color: var(--rose-soft);
-          font-weight: 600;
-        }
-        .service-title {
-          font-size: 0.72rem;
-          margin: 0.65rem 0 0.45rem;
+        .card-title {
+          font-size: 0.68rem;
+          margin: 0.85rem 0 0.45rem;
           font-weight: 700;
           color: var(--fg);
         }
-        .service-text {
+        .card-text {
           margin: 0;
           font-size: 0.84rem;
           color: var(--muted);
+          line-height: 1.55;
           font-weight: 300;
-          line-height: 1.62;
         }
-        .section-map {
-          background: linear-gradient(180deg, var(--bg-elevated), #050506);
+        .section-socios {
+          background: linear-gradient(180deg, var(--bg-elevated), var(--bg));
           border-top: 1px solid var(--line);
         }
-        .map-layout {
+        .socios-layout {
           display: grid;
           gap: 2rem;
-          align-items: stretch;
         }
-        @media (min-width: 860px) {
-          .map-layout {
-            grid-template-columns: 0.95fr 1.15fr;
+        @media (min-width: 800px) {
+          .socios-layout {
+            grid-template-columns: 1.15fr 0.85fr;
             gap: 2.5rem;
-            align-items: center;
+            align-items: start;
           }
         }
-        .map-copy {
-          text-align: center;
+        .checklist {
+          margin: 1.25rem 0 0;
+          padding: 0 0 0 1.1rem;
+          color: var(--muted);
+          font-size: 0.9rem;
+          line-height: 1.7;
         }
-        @media (min-width: 860px) {
-          .map-copy { text-align: left; }
+        .checklist li {
+          margin-bottom: 0.35rem;
         }
-        .map-address {
-          margin: 1rem 0 1.5rem;
-          font-size: 1rem;
-        }
-        .map-pin { margin-right: 0.25rem; }
-        .map-embed-wrap {
-          border-radius: 1rem;
-          overflow: hidden;
+        .socios-aside {
+          padding: 1.5rem;
+          border-radius: 12px;
           border: 1px solid var(--line);
-          box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-          min-height: 280px;
-          background: #111;
+          background: rgba(15, 23, 42, 0.6);
         }
-        .map-embed {
-          width: 100%;
-          height: min(50vh, 380px);
-          border: 0;
-          display: block;
+        .aside-kicker {
+          font-size: 0.58rem;
+          color: var(--gold-soft);
+          margin: 0 0 0.5rem;
+          font-weight: 700;
         }
-        .section-cta {
+        .aside-text {
+          margin: 0 0 1rem;
+          font-size: 0.85rem;
+          color: var(--muted);
+          line-height: 1.55;
+        }
+        .socios-aside .btn + .btn {
+          margin-top: 0.5rem;
+        }
+        .section-contact {
           position: relative;
-          background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(232, 72, 140, 0.18), transparent),
-            linear-gradient(180deg, #040405, #070708);
           border-top: 1px solid var(--line);
           overflow: hidden;
+          background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(56, 189, 248, 0.1), transparent),
+            var(--bg);
         }
-        .cta-glow {
+        .contact-glow {
           position: absolute;
-          width: 120%;
-          height: 50%;
-          left: -10%;
-          bottom: 0;
-          background: radial-gradient(ellipse at center, rgba(232, 72, 140, 0.15), transparent 70%);
+          inset: 0;
+          background: radial-gradient(circle at 50% 80%, rgba(201, 162, 39, 0.12), transparent 55%);
           pointer-events: none;
         }
-        .cta-block {
+        .contact-block {
           position: relative;
           text-align: center;
         }
-        .cta-lead {
-          max-width: 30rem;
-          margin: 0 auto 2rem;
+        .contact-lead {
+          max-width: 32rem;
+          margin: 0 auto 1.75rem;
         }
-        .inline-link {
-          color: var(--rose-soft);
-          text-decoration: underline;
-          text-underline-offset: 3px;
-        }
-        .inline-link:hover {
-          color: #fff;
-        }
-        .cta-buttons {
+        .contact-actions {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0.9rem;
+          gap: 0.75rem;
         }
-        @media (min-width: 520px) {
-          .cta-buttons {
+        @media (min-width: 540px) {
+          .contact-actions {
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
@@ -894,31 +812,37 @@ export default function App() {
           position: relative;
           z-index: 1;
           scroll-snap-align: end;
-          padding: 2.75rem 1.5rem 3.5rem;
+          padding: 2.5rem 1.25rem 3.25rem;
           text-align: center;
           border-top: 1px solid var(--line);
-          background: #040404;
+          background: #080e18;
         }
-        .footer-brand {
-          font-size: clamp(1.85rem, 5vw, 2.35rem);
+        .footer-acronym {
+          font-size: clamp(2rem, 5vw, 2.5rem);
+          font-weight: 700;
           margin: 0;
+          color: var(--gold-soft);
         }
-        .footer-tag {
-          font-size: 0.58rem;
-          color: var(--muted);
-          margin: 0.4rem 0 0.35rem;
+        .footer-full {
+          font-size: 0.55rem;
           font-weight: 600;
+          color: var(--muted);
+          margin: 0.5rem 0 0.25rem;
+          max-width: 22rem;
+          margin-left: auto;
+          margin-right: auto;
+          line-height: 1.5;
         }
-        .footer-address {
-          margin: 0 0 0.85rem;
+        .footer-meta {
+          margin: 0 0 0.75rem;
           font-size: 0.78rem;
-          color: var(--rose-soft);
-          font-weight: 500;
+          color: var(--muted);
         }
         .footer-copy {
           margin: 0;
           font-size: 0.68rem;
           color: var(--muted);
+          opacity: 0.85;
         }
       `}</style>
     </>

@@ -1,15 +1,14 @@
 :root {
-  --bg: #070708;
-  --bg-elevated: #0f0f12;
-  --fg: #faf7f8;
-  --muted: #a39da3;
-  --line: rgba(255, 255, 255, 0.07);
-  --rose: #e8488c;
-  --rose-soft: #f472b6;
-  --rose-deep: #be185d;
-  --rose-glow: rgba(232, 72, 140, 0.35);
-  --rose-muted: rgba(232, 72, 140, 0.12);
-  font-family: "Montserrat", system-ui, sans-serif;
+  --bg: #0b1220;
+  --bg-elevated: #111b2e;
+  --fg: #f1f5f9;
+  --muted: #94a3b8;
+  --line: rgba(148, 163, 184, 0.15);
+  --gold: #c9a227;
+  --gold-soft: #e8c547;
+  --gold-dim: rgba(201, 162, 39, 0.15);
+  --accent: #38bdf8;
+  font-family: "Outfit", system-ui, sans-serif;
   color: var(--fg);
   background-color: var(--bg);
   line-height: 1.6;
@@ -48,13 +47,13 @@ img {
   display: block;
 }
 
-.font-script {
-  font-family: "Great Vibes", cursive;
-  font-weight: 400;
+.font-display {
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
 }
 
 .tracking-wide {
-  letter-spacing: 0.32em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
@@ -69,6 +68,6 @@ img {
   }
 
   .ambient .orb {
-    opacity: 0.2;
+    opacity: 0.18;
   }
 }
